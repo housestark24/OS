@@ -1,0 +1,261 @@
+========================
+PROGRAM 1: PASSWORD CHECKER
+========================
+1. Input password P
+2. Compute length: n = |P|
+3. Check:
+   U = 1 if uppercase exists else 0
+   L = 1 if lowercase exists else 0
+   D = 1 if digit exists else 0
+   S = 1 if special character exists else 0
+4. Score = U + L + D + S
+5. If n ≥ 8 and Score = 4 → Strong else Weak/Medium
+
+
+========================
+PROGRAM 2(a): CAESAR CIPHER
+========================
+1. Convert letters: Pi = (ASCII(Pi) - 65)
+2. Encryption:
+   Ci = (Pi + k) mod 26
+3. Decryption:
+   Pi = (Ci - k) mod 26
+4. Convert back:
+   Character = Ci + 65
+5. Output result
+
+
+========================
+PROGRAM 2(b): PLAYFAIR CIPHER
+========================
+1. Create 5×5 key matrix (I=J)
+2. Split plaintext into digraphs
+3. Rules:
+   Same row: Ci = (col + 1) mod 5
+   Same column: Ri = (row + 1) mod 5
+   Rectangle: swap columns
+4. Decryption uses −1 mod 5
+5. Output ciphertext
+
+
+========================
+PROGRAM 3(a): HILL CIPHER
+========================
+1. Convert plaintext:
+   P = [P1 P2 ... Pn]^T
+2. Key matrix K
+3. Encryption:
+   C = (K × P) mod 26
+4. Decryption:
+   P = (K⁻¹ × C) mod 26
+   K⁻¹ = adj(K) × det(K)⁻¹ mod 26
+5. Output result
+
+
+========================
+PROGRAM 3(b): VIGENERE CIPHER
+========================
+1. Extend key to match plaintext
+2. Convert:
+   Pi, Ki ∈ [0,25]
+3. Encryption:
+   Ci = (Pi + Ki) mod 26
+4. Decryption:
+   Pi = (Ci - Ki) mod 26
+5. Output result
+
+
+========================
+PROGRAM 4(a): RAIL FENCE CIPHER
+========================
+1. Input P, rails r
+2. Zigzag index:
+   row = i mod (2r - 2)
+3. Fill characters
+4. Read row-wise
+5. Output ciphertext
+
+
+========================
+PROGRAM 4(b): ROW-COLUMN TRANSPOSITION
+========================
+1. Arrange plaintext into matrix
+2. Apply key permutation π
+3. Encryption:
+   Read columns in sorted π order
+4. Decryption:
+   Apply inverse π⁻¹
+5. Output result
+
+
+========================
+PROGRAM 5: DES
+========================
+1. Input 64-bit plaintext, 56-bit key
+2. Apply Initial Permutation:
+   IP(P)
+3. Split:
+   L0, R0
+4. For i = 1 to 16:
+   Li = Ri-1
+   Ri = Li-1 ⊕ F(Ri-1, Ki)
+   F(R,K) = P(S(E(R) ⊕ K))
+5. Apply Final Permutation:
+   Cipher = FP(R16, L16)
+
+
+========================
+PROGRAM 6: RSA
+========================
+1. Choose primes p, q
+2. Compute:
+   n = p × q
+   φ(n) = (p−1)(q−1)
+3. Choose e:
+   gcd(e, φ(n)) = 1
+4. Compute:
+   d ≡ e⁻¹ mod φ(n)
+5. Encryption:
+   C = P^e mod n
+   Decryption:
+   P = C^d mod n
+
+
+========================
+PROGRAM 7: DIFFIE-HELLMAN
+========================
+1. Public: p, g
+2. Private: a, b
+3. Compute:
+   A = g^a mod p
+   B = g^b mod p
+4. Exchange A, B
+5. Shared key:
+   K = B^a mod p = A^b mod p
+
+
+========================
+KLEOPATRA – ENCRYPTION & DECRYPTION (STEP-BY-STEP)
+========================
+
+ENCRYPTION:
+1. Open Kleopatra application.
+2. Click on "File" → "Sign/Encrypt".
+3. Select the file or type the message to encrypt.
+4. Click "Next".
+5. Select recipient’s public certificate (receiver’s key).
+6. Enable "Encrypt for me" (optional for self-access).
+7. Click "Encrypt".
+8. Save the encrypted file (.gpg or .asc).
+
+DECRYPTION:
+1. Open Kleopatra.
+2. Click "Decrypt/Verify".
+3. Select the encrypted file.
+4. Click "Decrypt".
+5. Enter passphrase (if prompted).
+6. View or save the decrypted output.
+
+--------------------------------------------------
+
+========================
+KLEOPATRA – DIGITAL SIGNATURE (STEP-BY-STEP)
+========================
+
+SIGNING (CREATING SIGNATURE):
+1. Open Kleopatra.
+2. Click "File" → "Sign/Encrypt".
+3. Select the file/message.
+4. Click "Next".
+5. Choose your private key (your certificate).
+6. Enable "Sign".
+7. Click "Sign/Encrypt".
+8. Enter passphrase.
+9. Signature file (.sig/.asc) is generated.
+
+VERIFICATION:
+1. Open Kleopatra.
+2. Click "Decrypt/Verify".
+3. Select the signed file.
+4. Click "Verify".
+5. Tool checks signature using sender’s public key.
+6. Output shows "Valid Signature" or "Invalid Signature".
+
+--------------------------------------------------
+
+========================
+ADDING CERTIFICATE (IMPORTANT STEP)
+========================
+
+1. Open Kleopatra.
+2. Click "File" → "Import Certificates".
+3. Select certificate file (.asc/.gpg).
+4. Click "Import".
+5. Certificate appears in key list.
+
+OR
+
+1. Click "New Key Pair".
+2. Enter name and email.
+3. Set passphrase.
+4. Generate public & private key pair.
+
+--------------------------------------------------
+
+
+========================
+PROGRAM 10: ELGAMAL
+========================
+1. Key Generation:
+   Choose p, g
+   Private key x
+   Public key:
+      y = g^x mod p
+
+2. Encryption:
+   Choose random k
+   C1 = g^k mod p
+   C2 = M × y^k mod p
+
+3. Shared secret:
+   s = y^k mod p
+   OR
+   s = C1^x mod p
+
+4. Decryption:
+   M = C2 × (C1^x)⁻¹ mod p
+
+5. Final:
+   S = g^{kx} mod p
+
+
+========================
+PROGRAM 11: SHA-256
+========================
+1. Padding:
+   M || 1 || 0… || length
+2. Divide into 512-bit blocks
+3. Initialize:
+   H0 … H7
+4. Compression:
+   T1 = h + Σ1(e) + Ch(e,f,g) + Kt + Wt
+   T2 = Σ0(a) + Maj(a,b,c)
+5. Output:
+   256-bit hash
+
+
+========================
+PROGRAM 12: MD5
+========================
+1. Padding message
+2. Initialize:
+   A, B, C, D
+3. Functions:
+   F(X,Y,Z) = (X∧Y) ∨ (¬X∧Z)
+   G(X,Y,Z) = (X∧Z) ∨ (Y∧¬Z)
+   H(X,Y,Z) = X ⊕ Y ⊕ Z
+   I(X,Y,Z) = Y ⊕ (X ∨ ¬Z)
+4. Round:
+   A = B + ((A + F + X[k] + T[i]) <<< s)
+5. Output:
+   Digest = A || B || C || D
